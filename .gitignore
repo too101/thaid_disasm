@@ -1,0 +1,12 @@
+# Binary ลิขสิทธิ์ MicroWiz - ไม่เก็บใน repo (ลบบรรทัดนี้หากต้องการเก็บเพื่อใช้ส่วนตัว)
+THAID.COM
+*.COM
+!tools/*.COM
+
+# สร้างด้วย tools/gen_source.py (ซอร์สที่ rebuild ได้ครบทุกไบต์ = เทียบเท่า binary ลิขสิทธิ์ ไม่เก็บใน repo)
+THAID_src.s
+build/
+
+# Python bytecode
+__pycache__/
+*.pyc

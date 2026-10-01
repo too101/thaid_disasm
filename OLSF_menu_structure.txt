@@ -1,0 +1,111 @@
+== block 443C
+  head: di=0DC2 cl=25 bl=0C
+  fill  ch=20 attr=02 pos=00A0
+  text  attr=02 pos=00A4 'รายการหลัก'
+  text  attr=01 pos=0468 'การแสดงภาพ :'
+  text  attr=01 pos=0648 'รหัสของข้อมูล :'
+  text  attr=01 pos=082A 'บรรทัดที่ 26 :'
+  text  attr=03 pos=0A04 'กด ENTER เพื่อ :'
+  text  attr=01 pos=0BF6 'ปรับตัวแปรระบบ ¦'
+  text  attr=01 pos=0DD6 'ปรับตัวแปรแป้นพิมพ์ ¦'
+  text  attr=01 pos=0FB6 'ปรับตัวแปรเครื่องพิมพ์ ¦'
+  text  attr=01 pos=1196 'ควบคุมเครื่องพิมพ์ ¦'
+  items @ 44FE
+  item fl=01(list) pos=0482 spec@38A9[04 00 06 06 13 13 20 20] var=3826 mask=FF help='อังกฤษ ไทย 25 ตัวหนา ไทย 25 ตัวบาง ตัวอักษรไทย(ไม่จัดบรรทัด)'
+  item fl=01(list) pos=0662 spec@028C[00 00 00 00 00 00 00 00] var=3827 mask=FF help='4¦                    .แสดง วันที่ เ'
+  item fl=01(list) pos=0842 spec@3828[02 00 07 03 07 e1 a0 cd] var=381C mask=01 help='แสดง วันที่ เวลา และสถานะต่างๆ ที่บรรทัดที่ 26'
+  item fl=04(submenu) pos=0BF6 spec@3FC1[32 0c 25 11 20 02 a0 00] var=3826 mask=FF help='การแสดงชื่อรหัส,ภาษาที่ใช้-บนจอภาพ/ ความเร็วของการแสดงภาพ/ การชดเชยสระ/ เส้นกรอบ'
+  item fl=04(submenu) pos=0DD6 spec@415F[12 0e 25 09 20 02 a0 00] var=3826 mask=FF help='แป้นเลือกภาษา/ ตรวจลำดับการพิมพ์/ การเรียงตัวอักษรบนแป้นพิมพ์'
+  item fl=04(submenu) pos=0FB6 spec@421F[12 0e 25 0a 20 02 a0 00] var=3826 mask=FF help='วิธีการพิมพ์/ รหัสภาษาไทยของเครื่องพิมพ์/ เครื่องพิมพ์ที่ใช้'
+  item fl=04(submenu) pos=1196 spec@42FC[12 0e 25 0d 20 02 a0 00] var=3826 mask=FF help='ตั้งระยะบรรทัด/ ระยะตัวอักษร/ ลักษณะพิเศษของตัวอักษร สำหรับเครื่องพิมพ์'
+  end @ 4544
+== block 3FC1
+  head: di=0C32 cl=25 bl=11
+  fill  ch=20 attr=02 pos=00A0
+  text  attr=02 pos=00A4 'ตัวแปรของระบบ'
+  text  attr=01 pos=047A 'ชื่อรหัส :'
+  text  attr=01 pos=064A 'ตำแหน่งแสดงรหัส : กด ENTER'
+  text  attr=01 pos=0836 'ไทย-ENG :'
+  text  attr=01 pos=0A08 'ตำแหน่งแสดงภาษา : กด ENTER'
+  text  attr=01 pos=0BEA 'ความเร็วแสดงผล :'
+  text  attr=03 pos=0DC6 'เส้นกรอบ'
+  text  attr=01 pos=0FAA 'ตรวจปรับอัตโนมัติ :'
+  text  attr=01 pos=1192 'ตรวจเส้นตั้ง :'
+  text  attr=03 pos=1366 'การชดเชยสระ'
+  text  attr=01 pos=1546 'ชดเชยก่อนเส้นกรอบ :'
+  text  attr=01 pos=1730 'เมื่อพบตัวว่าง :'
+  text  attr=01 pos=1750 'ตัว'
+  text  attr=01 pos=190E 'เมื่อพบตัวพิเศษ :'
+  text  attr=01 pos=1930 'ตัว'
+  text  attr=01 pos=1AE6 'ASCII ของตัวพิเศษ :'
+  items @ 40F0
+  item fl=02(mask) pos=048A spec@3828[02 00 07 03 07 e1 a0 cd] var=381A mask=02 help='แสดงหรือไม่แสดง เฉพาะในโหมดไทย'
+  item fl=88(dep+enter) pos=066A spec@3835[00 05 03 05 e1 a0 cd a0] var=3612 mask=FF help='กำหนดตำแหน่งโดยใช้ลูกศรหลังจากกด ENTER'
+  item fl=02(mask) pos=084A spec@3828[02 00 07 03 07 e1 a0 cd] var=381A mask=08 help='แสดงหรือไม่แสดง เฉพาะในโหมดไทย'
+  item fl=88(dep+enter) pos=0A2A spec@3835[00 05 03 05 e1 a0 cd a0] var=360C mask=FF help='กำหนดตำแหน่งโดยใช้ลูกศรหลังจากกด ENTER'
+  item fl=01(list) pos=0C0A spec@383E[c4 34 33 32 31 90 20 30] var=381F mask=FF help='ความเร็วในการแสดงภาพ มี 4:เร็วที่สุด, 3:เร็ว, 2:ปานกลาง, 1:ปกติ'
+  item fl=02(mask) pos=0FCA spec@3867[02 00 07 03 07 e1 a0 cd] var=381B mask=01 help='ปรับเส้นกรอบจากตัวอักษรภาษาไทยให้เป็นเส้นที่ถูกต้องโดยอัตโนมัติ'
+  item fl=02(mask) pos=11AA spec@3873[02 03 07 00 07 e1 a0 cd] var=381B mask=02 help='การตรวจเส้นตั้งอาจรบกวนการแสดงภาษาไทยแท้ๆ ที่ไม่ใช่เส้นกรอบ'
+  item fl=02(mask) pos=156A spec@387F[02 03 08 00 08 e1 a0 cd] var=381B mask=04 help='เพื่อให้เส้นกรอบในแนวตั้งอยู่ในแนวเดียวกัน'
+  item fl=01(list) pos=174A spec@3843[90 20 30 20 31 20 32 20] var=3820 mask=FF help='ปรับตำแหน่งคอลัมน์โดยเพิ่มตัวว่างเท่ากับจำนวนที่เสียไปจากสระบน-ล่าง และวรรณยุกต์'
+  item fl=01(list) pos=192A spec@3843[90 20 30 20 31 20 32 20] var=3821 mask=FF help='ปรับตำแหน่งคอลัมน์โดยเพิ่มตัวว่างเท่ากับจำนวนที่เสียไปจากสระบน-ล่าง และวรรณยุกต์'
+  item fl=88(dep+enter) pos=1B0A spec@3864[81 41 30 02 00 07 03 07] var=366B mask=FF help='ตามปกติใช้ A0 หรือ 00, เปลี่ยนค่าได้โดยกด ENTER แล้วใส่เลขฐาน 16 2 ตำแหน่ง'
+  end @ 415E
+== block 415F
+  head: di=0E12 cl=25 bl=09
+  fill  ch=20 attr=02 pos=00A0
+  text  attr=02 pos=00A4 'ตัวแปรของแป้นพิมพ์'
+  text  attr=01 pos=0470 'ภาษาแป้นพิมพ์ :'
+  text  attr=01 pos=0642 'ตรวจสอบลำดับการพิมพ์ :'
+  text  attr=01 pos=082E 'แป้นเลือกภาษา :'
+  text  attr=01 pos=0A06 'เสียงการเลือกภาษา :'
+  text  attr=01 pos=0BEA 'เรียงตัวอักษรแบบ :'
+  items @ 41EC
+  item fl=02(mask) pos=048A spec@38DD[02 04 0a 00 0a e1 96 a1] var=381A mask=80 help='ไทยและอังกฤษ หรือ อังกฤษอย่างเดียว'
+  item fl=02(mask) pos=066A spec@392F[02 00 07 03 07 e1 a0 cd] var=381A mask=20 help='เช่น สระจะต้องตามพยัญชนะไทยเสมอ และ วรรณยุกต์จะต้องตามสระเสมอ'
+  item fl=01(list) pos=084A spec@38EC[06 00 05 05 0e 0e 19 19] var=3823 mask=FF help='"`",CapsLock, ScrollLock, Esc หรือ Alt'
+  item fl=02(mask) pos=0A2A spec@3834[02 00 05 03 05 e1 a0 cd] var=381A mask=10 help='ในขณะกดแป้นเปลี่ยนภาษา ต้องการให้มีเสียงสัญญาณ'
+  item fl=02(mask) pos=0C0A spec@396B[02 00 06 06 0f b2 80 a8] var=381A mask=04 help='แป้นพิมพ์แบบเกษมณี(ฟ-ห-ก-ด)หรือปัตตะโชติ'
+  end @ 421E
+== block 421F
+  head: di=0E12 cl=25 bl=0A
+  fill  ch=20 attr=02 pos=00A0
+  text  attr=02 pos=00A4 'ตัวแปรของเครื่องพิมพ์'
+  text  attr=01 pos=0474 'ลักษณะพิมพ์ :'
+  text  attr=01 pos=0650 'รหัสภาษาไทย :'
+  text  attr=01 pos=082E 'จำนวนเข็มพิมพ์ :'
+  text  attr=01 pos=0A08 'ใช้ ` แทนเอสเคป :'
+  text  attr=01 pos=0BE8 'วิธีนับระยะพิมพ์แบบ :'
+  text  attr=01 pos=0DC8 'ระดับพิมพ์ต่อบรรทัด :'
+  items @ 42BF
+  item fl=02(mask) pos=048A spec@395B[02 00 0b 03 0b e1 a0 cd] var=381D mask=01 help='หากโปรแกรมที่ใช้จัดระดับการพิมพ์ด้วยตัวเองอยู่แล้ว ให้เลือก ไม่จัดระดับ'
+  item fl=01(list) pos=066A spec@028C[00 00 00 00 00 00 00 00] var=3824 mask=FF help='4¦                    .แสดง วันที่ เ'
+  item fl=02(mask) pos=084A spec@3925[02 00 03 03 05 38 2f 39] var=381D mask=20 help='สามารถดูได้จากคู่มือเครื่องพิมพ์'
+  item fl=02(mask) pos=0A2A spec@393B[02 00 06 03 06 e1 a0 cd] var=381D mask=08 help='ให้แปลตัว ` เป็นตัวเอสเคป ใช้ในโปรแกรมที่ไม่สามารถใส่ตัวเอสเคปจริงได้'
+  item fl=02(mask) pos=0C0A spec@3946[02 00 05 05 0d ac c7 cd] var=381D mask=04 help='แบบไมโครวิซจะสามารถปรับระยะห่างระหว่างสระและตัวอักษรได้, การนับระยะบรรทัดต่างกัน'
+  item fl=C2(dep-inv+mask) pos=0DEA spec@3958[c2 32 33 02 00 0b 03 0b] var=381D mask=02 help='ในการพิมพ์แบบไม่ใช่ไมโครวิซ, 2 ระดับคือสระล่างจะซ้อนอยู่กับสระบนของบรรทัดถัดไป'
+  end @ 42FB
+== block 42FC
+  head: di=0E12 cl=25 bl=0D
+  fill  ch=20 attr=02 pos=00A0
+  text  attr=02 pos=00A4 'ควบคุมเครื่องพิมพ์'
+  text  attr=01 pos=0462 'ระยะบรรทัด'
+  text  attr=01 pos=0646 'จำนวนตัวอักษรต่อนิ้ว :'
+  text  attr=01 pos=0826 'ตัวกว้าง Double Width :'
+  text  attr=01 pos=0A10 'ตัวบีบ Condensed :'
+  text  attr=01 pos=0BF8 'ตัวหนา Bold :'
+  text  attr=01 pos=0DCA 'ขีดเส้นใต้ Underline :'
+  text  attr=01 pos=0FB2 'ตัวเอียง Italic :'
+  text  attr=01 pos=118A 'ตัว Letter Quality :'
+  text  attr=01 pos=1378 'ให้ส่งรหัสเซ็ท :'
+  items @ 43E1
+  item fl=01(list) pos=0476 spec@3891[ff 20 20 2f 31 38 30 22] var=3825 mask=FF help='LPI คือ บรรทัดต่อนิ้ว'
+  item fl=02(mask) pos=066A spec@388C[82 31 30 31 32 ff 20 20] var=381E mask=08 help='10,12 ตัวต่อนิ้ว'
+  item fl=02(mask) pos=0852 spec@38A6[c2 2e 58 04 00 06 06 13] var=381E mask=04 help='x :ให้เป็น . :ไม่ให้เป็นลักษณะพิเศษนั้นๆ จะมีผลเมื่อเลือก"ให้ส่งรหัสเซ็ท"ไว้ด้วย'
+  item fl=02(mask) pos=0A32 spec@38A6[c2 2e 58 04 00 06 06 13] var=381E mask=02 help='x :ให้เป็น . :ไม่ให้เป็นลักษณะพิเศษนั้นๆ จะมีผลเมื่อเลือก"ให้ส่งรหัสเซ็ท"ไว้ด้วย'
+  item fl=02(mask) pos=0C12 spec@38A6[c2 2e 58 04 00 06 06 13] var=381E mask=80 help='x :ให้เป็น . :ไม่ให้เป็นลักษณะพิเศษนั้นๆ จะมีผลเมื่อเลือก"ให้ส่งรหัสเซ็ท"ไว้ด้วย'
+  item fl=02(mask) pos=0DF2 spec@38A6[c2 2e 58 04 00 06 06 13] var=381E mask=40 help='x :ให้เป็น . :ไม่ให้เป็นลักษณะพิเศษนั้นๆ จะมีผลเมื่อเลือก"ให้ส่งรหัสเซ็ท"ไว้ด้วย'
+  item fl=02(mask) pos=0FD2 spec@38A6[c2 2e 58 04 00 06 06 13] var=381E mask=20 help='x :ให้เป็น . :ไม่ให้เป็นลักษณะพิเศษนั้นๆ จะมีผลเมื่อเลือก"ให้ส่งรหัสเซ็ท"ไว้ด้วย'
+  item fl=02(mask) pos=11B2 spec@38A6[c2 2e 58 04 00 06 06 13] var=381E mask=10 help='x :ให้เป็น . :ไม่ให้เป็นลักษณะพิเศษนั้นๆ จะมีผลเมื่อเลือก"ให้ส่งรหัสเซ็ท"ไว้ด้วย'
+  item fl=02(mask) pos=1392 spec@38A6[c2 2e 58 04 00 06 06 13] var=381E mask=01 help='ควบคุมให้เครื่องพิมพ์ ตามที่ได้เลือกเป็น X ไว้ . คือไม่ส่ง'
+  end @ 443B
