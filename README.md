@@ -21,6 +21,7 @@
 | `tools/tcur.s`, `tools/TCUR.COM` | พิมพ์ค่า CRTC 09/0A/0B/0E/0F และตำแหน่ง/รูปร่าง cursor ใน BIOS data — ใช้ตอนวินิจฉัยอาการ cursor หาย |
 | `tools/t16.s`, `tools/T16.COM` | ทดสอบมาโคร ั้ ของ INT 16h : เฟส 1 อ่านด้วย AH=00h, เฟส 2 อ่านด้วย AH=10h แล้วพิมพ์ AX (ฐาน 16) |
 | `tools/t91.s`, `tools/T91.COM` | โปรแกรมทดสอบ AH=91h สำหรับรันใน DOSBox-X หลังติดตั้ง THAID (ดู §13.2–13.3) |
+| `tools/thaid_cfg.py`, `tools/emu_check_cfg.py` | ถอด/สร้างไฟล์ THAID.CFG และทดสอบตัวโหลดจริงด้วย unicorn (โครงสร้างดู THAID_ANALYSIS.md §16) |
 | `tools/decode_strings.py` | ดึง/ถอดสตริง TIS-620 |
 | `tools/codeset.py` | ถอดตารางรหัส KU/TIS (internal ↔ app) จาก binary |
 | `tools/olsf_dump.py` | ถอดโครงสร้างเมนู OLSF (ข้อความ/รายการ/ตัวแปร/ข้อความช่วย) |
