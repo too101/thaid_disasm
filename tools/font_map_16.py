@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""plot ฟอนต์ไทย 8x16 (16 ไบต์/glyph) ที่ file offset 0x64F0..0x6CEF (128 glyph; 0x6CF0..0x6DEF ไม่ใช่ glyph) ของ THAID.COM
+"""plot ฟอนต์ไทย 8x16 (16 ไบต์/glyph) ที่ file offset 0x64E0..0x6CDF (128 glyph; 0x6CE0..0x6DDF ไม่ใช่ glyph) ของ THAID.COM
 ใช้: python tools/font_map_16.py [base] [count] -> font_map_64F0.png (16 glyph ต่อแถว, ป้ายแถว = ลำดับ glyph เลขฐาน 16)"""
 import sys
 from PIL import Image, ImageDraw, ImageFont
 D = open('THAID.COM', 'rb').read()
-base = int(sys.argv[1], 16) if len(sys.argv) > 1 else 0x64F0
+base = int(sys.argv[1], 16) if len(sys.argv) > 1 else 0x64E0
 count = int(sys.argv[2], 0) if len(sys.argv) > 2 else 0x80
 S, PAD, LM, TM = 3, 6, 40, 44
 GW, GH = 8 * S, 16 * S

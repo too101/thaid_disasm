@@ -35,7 +35,7 @@ def seed(addr, note=''):
     if addr not in insns and 0 <= m2f(addr) < SIZE:
         queue.append((addr, note))
 
-seed(0x6FC9, 'entry point (first JMP of file)')
+seed(0x6FB9, 'entry point (first JMP of file)')
 
 # Known code regions seen in hex (referenced as data/installed handlers) - seeded later
 while queue:

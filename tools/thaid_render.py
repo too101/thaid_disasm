@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""จำลอง row renderer ของ THAID (0x16C0-0x18FC) แล้วเรนเดอร์ข้อความไทยเป็น PNG
+"""จำลอง row renderer ของ THAID (0x16C9-0x1905) แล้วเรนเดอร์ข้อความไทยเป็น PNG
 
 ใช้ข้อมูลจาก THAID.COM ตรง ๆ ทั้งหมด:
   - ตาราง app->internal จาก record TIS (tools/codeset.py)
-  - ตาราง internal -> slice ล่าง [0x1554]
+  - ตาราง internal -> slice ล่าง [0x155D]
   - ตารางผสมสระบน+วรรณยุกต์ [0x0F17] (routine 0x131B)
-  - ตาราง F7-FF -> glyph [0x170D]
-  - ฟอนต์ 8x6: block0 (attr bit3=0) = file 0x4CF0, block1 (attr bit3=1) = file 0x52F0
-    (ชุดตัวบาง: file 0x58F0 / 0x5EF0)
+  - ตาราง F7-FF -> glyph [0x1716]
+  - ฟอนต์ 8x6: block0 (attr bit3=0) = file 0x4CE0, block1 (attr bit3=1) = file 0x52E0
+    (ชุดตัวบาง: file 0x58E0 / 0x5EE0)
 แต่ละ cell ของแอป -> 3 band (upper/middle/lower) คนละแถว text จริงบนจอ (MaxScan=5)
 
 ใช้: python tools/thaid_render.py "ข้อความ" out.png [--thin] [--comp N]
@@ -18,7 +18,7 @@ from codeset import Image
 img = Image()
 D = img.d
 TIS_I2A, TIS_A2I, _ = img.codesets()['TIS']
-LOWER = [img.b(0x1554 + i) for i in range(256)]
+LOWER = [img.b(0x155D + i) for i in range(256)]
 
 
 def f17(v):
@@ -41,7 +41,7 @@ def render_row(codes, comp_space=0, comp_special=0, special=None, comp_box=True,
     def emit(c, upper=0):
         out.append([(upper, 0), (c, 0), (LOWER[c], 1)])
 
-    def fill():                      # 0x189D: เติม FF ให้คอลัมน์กลับมาตรงกับต้นฉบับ
+    def fill():                      # 0x18A6: เติม FF ให้คอลัมน์กลับมาตรงกับต้นฉบับ
         while len(out) < src - 1:
             out.append([(0xFF, 0), (0xFF, 0), (0xFF, 1)])
 
@@ -49,17 +49,17 @@ def render_row(codes, comp_space=0, comp_special=0, special=None, comp_box=True,
     while i < len(codes):
         c = codes[i]; i += 1; src = i
         while True:                               # loop = "reprocess" (jmp กลับ dispatcher)
-            if state == S0:                       # 0x1736
+            if state == S0:                       # 0x173F
                 if c < 0x80 or 0xAE <= c < 0xC3:
                     emit(c)
                 elif c < 0xAE:
                     state = CONS; emit(c)
                 elif c < 0xD2:
-                    out.append([(0, 0), (c, 0), (0, 0)])   # 0x1749 สระลอย: วางแถวกลาง
+                    out.append([(0, 0), (c, 0), (0, 0)])   # 0x1752 สระลอย: วางแถวกลาง
                 else:
                     state = high(c, out, emit, fill, comp_box, state)
                 break
-            if state in (CONS, CONS2):            # 0x179A / 0x17A4
+            if state in (CONS, CONS2):            # 0x17A3 / 0x17AD
                 if c < 0xC3 or c >= 0xD2:
                     state = S0 if state == CONS else AFTER
                     continue
@@ -69,7 +69,7 @@ def render_row(codes, comp_space=0, comp_special=0, special=None, comp_box=True,
                     state = AFTER
                 attach(out, c)
                 break
-            if state == V1:                       # 0x17E7
+            if state == V1:                       # 0x17F0
                 if c == 0xCC and last_vowel == 0xC8:
                     state = AFTER; attach(out, c); break
                 if 0xCD <= c < 0xD2:
@@ -78,7 +78,7 @@ def render_row(codes, comp_space=0, comp_special=0, special=None, comp_box=True,
                         state = AFTER; attach(out, c - 0xCD + bl); break
                 state = AFTER
                 continue
-            if state == COMP:                     # 0x186A
+            if state == COMP:                     # 0x1873
                 if c == comp[0]:
                     comp[1] -= 1
                     if comp[1] == 0:
@@ -88,7 +88,7 @@ def render_row(codes, comp_space=0, comp_special=0, special=None, comp_box=True,
                     break
                 state = AFTER
                 continue
-            if state == AFTER:                    # 0x176C
+            if state == AFTER:                    # 0x1775
                 n = comp_space if c == 0x20 else (comp_special if c == special else None)
                 if n is not None:
                     if n - 1 == 0:
@@ -115,15 +115,15 @@ def attach(out, c):
     if not out:
         return
     cell = out[-1]
-    if 0xC8 <= c <= 0xCA:                         # 0x17C4: สระล่าง -> OR เข้า slice ล่าง
+    if 0xC8 <= c <= 0xCA:                         # 0x17CD: สระล่าง -> OR เข้า slice ล่าง
         g, blk = cell[2]
         cell[2] = (g | ((c - 0xC7) << 5), blk)
-    else:                                         # 0x17DC: สระบน/วรรณยุกต์ -> band บน
+    else:                                         # 0x17E5: สระบน/วรรณยุกต์ -> band บน
         cell[0] = (c, 0)
 
 
-def high(c, out, emit, fill, comp_box, state):   # 0x180D
-    if c < 0xDF:                                  # D2-DE เส้นกรอบ (0x18B8)
+def high(c, out, emit, fill, comp_box, state):   # 0x1816
+    if c < 0xDF:                                  # D2-DE เส้นกรอบ (0x18C4)
         if comp_box:
             fill()
         up, lo = c, c - 0x68
@@ -137,7 +137,7 @@ def high(c, out, emit, fill, comp_box, state):   # 0x180D
     elif c < 0xF7:
         emit(0xDE)
     else:
-        emit(img.b(0x170D + c))
+        emit(img.b(0x1716 + c))
     return state
 
 
@@ -147,7 +147,7 @@ def to_internal(text):
 
 def draw(rows, path, thin=False, scale=3):
     from PIL import Image as PI
-    fonts = (0x58F0, 0x5EF0) if thin else (0x4CF0, 0x52F0)
+    fonts = (0x58E0, 0x5EE0) if thin else (0x4CE0, 0x52E0)
     w = max(len(r) for r in rows) * 8
     h = len(rows) * 18
     im = PI.new('L', (w, h), 0)

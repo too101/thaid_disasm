@@ -6,7 +6,7 @@ _start:
     mov ah,0x0f
     int 0x16
     mov es,bx
-    cmp word ptr es:[0x1fc0],0x694d      # "Mi" ของ "MicroWizKBD" ที่ 1FC0h
+    cmp word ptr es:[0x1fd0],0x694d      # "Mi" ของ "MicroWizKBD" ที่ 1FD0h
     jne notinst
     mov [tseg],bx
     mov ax,es:[0x13e]

@@ -7,7 +7,7 @@ sys.stdout.reconfigure(encoding='utf-8', newline='\n')  # ไม่ให้ Win
 
 path = sys.argv[1] if len(sys.argv) > 1 else 'THAID.COM'
 BASE = 0x100  # COM: ที่อยู่ memory = file offset + 0x100
-DATA = open(path, 'rb').read()[:0x7528]   # image จริงจบที่ address 0x7627 (ส่วนท้ายไฟล์ไม่ถูกเรียกใช้ ไม่ดึงสตริง)
+DATA = open(path, 'rb').read()[:0x7518]   # image จริงจบที่ address 0x7617 (ส่วนท้ายไฟล์ไม่ถูกเรียกใช้ ไม่ดึงสตริง)
 
 def tis_decode(b):
     return b.decode('cp874', 'replace')
@@ -50,11 +50,11 @@ while i < len(DATA):
 sys.path.insert(0, __import__('os').path.dirname(__import__('os').path.abspath(__file__)))
 from thaid_ku import ku_decode  # noqa: E402
 
-print("\n=== ข้อความเมนู OLSF (รหัสภายใน KU-THAID ถอดด้วยตารางของโปรแกรม; 0x3844-0x4590) ===")
+print("\n=== ข้อความเมนู OLSF (รหัสภายใน KU-THAID ถอดด้วยตารางของโปรแกรม; 0x3834-0x4580) ===")
 _OK = set(range(0x20, 0x7F)) | set(range(0x80, 0xAE)) | set(range(0xAF, 0xC1)) | set(range(0xC3, 0xD2)) \
     | set(range(0xDF, 0xF7)) | {0xFE}
 _THAI = _OK - set(range(0x20, 0x7F))
-i, end = 0x3844 - BASE, 0x4590 - BASE
+i, end = 0x3834 - BASE, 0x4580 - BASE
 while i < end:
     j = i
     while j < end and DATA[j] in _OK:

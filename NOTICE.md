@@ -1,6 +1,6 @@
 # Notice
 
-This repository is an independent, educational study of **ThaiD v2.3**
+This repository is an independent, educational study of **ThaiD v2.3.88**
 (Thai driver for DOS, by The MicroWiz Systems, copyright 1988-1992).
 
 - No original program binary is included.

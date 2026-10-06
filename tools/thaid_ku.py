@@ -9,7 +9,7 @@
 กฎ: สระนำ เ แ โ ใ ไ เก็บหน้าพยัญชนะ (ลำดับการพิมพ์ปกติ)
 
 ใช้: python tools/thaid_ku.py            -> ตัวอย่างที่ยืนยันแล้ว
-     python tools/thaid_ku.py --olsf     -> ถอดโซนข้อความ OLSF ทั้งหมด (0x3844-0x4590)
+     python tools/thaid_ku.py --olsf     -> ถอดโซนข้อความ OLSF ทั้งหมด (0x3834-0x4580)
 """
 import sys
 from codeset import Image
@@ -53,19 +53,19 @@ def ku_decode(data: bytes, dot_space=True) -> str:
 if __name__ == '__main__':
     data = IMG.d
     if '--olsf' in sys.argv:
-        a, end = 0x3844, 0x4590
+        a, end = 0x3834, 0x4580
         while a < end:
             seg = data[a - 0x100:a - 0x100 + 64]
             print(f'{a:04X}: {ku_decode(seg)}')
             a += 64
         sys.exit()
     samples = [
-        (0x4479, 9,  "'บรรทัดที่'"),
-        (0x4466, 13, "'รหัสของข้อมูล'"),
-        (0x400A, 3,  "ปุ่มสถานะ / 'ไทย-ENG'"),
-        (0x4494, 5,  "'เพื่อ'"),
-        (0x3D4D, 22, "'ภาษาไทยของเครื่องพิมพ์'"),
-        (0x38B2, 22, "bottom: 'อังกฤษ ไทย 25 ตัวหนา'"),
+        (0x4469, 9,  "'บรรทัดที่'"),
+        (0x4456, 13, "'รหัสของข้อมูล'"),
+        (0x3FFA, 3,  "ปุ่มสถานะ / 'ไทย-ENG'"),
+        (0x4484, 5,  "'เพื่อ'"),
+        (0x3D3D, 22, "'ภาษาไทยของเครื่องพิมพ์'"),
+        (0x38A2, 22, "bottom: 'อังกฤษ ไทย 25 ตัวหนา'"),
     ]
     for addr, n, label in samples:
         seg = data[addr - 0x100: addr - 0x100 + n]

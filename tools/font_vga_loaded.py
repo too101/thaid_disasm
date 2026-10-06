@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""วาดฟอนต์ VGA 8x16 หลัง THAID โหมด 3 ("ตัวอักษรไทย ไม่จัดบรรทัด") โหลดฟอนต์ไทยทับ slot 80h..FFh (รูทีน 4D20h)
+"""วาดฟอนต์ VGA 8x16 หลัง THAID โหมด 3 ("ตัวอักษรไทย ไม่จัดบรรทัด") โหลดฟอนต์ไทยทับ slot 80h..FFh (รูทีน 4D10h)
 slot ของ glyph i = ตาราง internal->app ของชุดรหัสที่เลือก [i2a[0x80+i]] (0 = ข้าม, FFh = ไม่มีรหัส -> ลง slot FFh ซ้อนกัน ตัวสุดท้ายชนะ)
 slot 00h..7Fh = ฟอนต์ ROM ของการ์ด (ไม่อยู่ในไฟล์ -> วาดช่องว่างสีเทา)
 ใช้: python tools/font_vga_loaded.py  -> font_vga_KU.png font_vga_TIS.png"""
@@ -8,7 +8,7 @@ from PIL import Image, ImageDraw, ImageFont
 sys.path.insert(0, 'tools')
 from codeset import Image as CS
 D = open('THAID.COM', 'rb').read()
-GLYPH = 0x64F0
+GLYPH = 0x64E0
 S, PAD, LM, TM = 3, 6, 40, 44
 GW, GH = 8 * S, 16 * S
 CW, CH = GW + PAD, GH + PAD
@@ -23,7 +23,7 @@ def build(i2a):
     for i in range(0x80):
         t = i2a[0x80 + i]
         if t:
-            slots[t] = i          # ตัวหลังทับตัวก่อน เหมือน loop ใน 4D20h
+            slots[t] = i          # ตัวหลังทับตัวก่อน เหมือน loop ใน 4D10h
     return slots
 
 def render(name, slots):

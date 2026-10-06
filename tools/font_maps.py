@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """plot font 8x6 ทั้ง 4 ชุดของ THAID.COM เป็น font map (16x16 = 256 slot ต่อชุด)
-ชุด: 0x4CF0 กลาง/ตัวหนา, 0x52F0 ล่าง/ตัวหนา, 0x58F0 บน?/ตัวบาง(กลาง), 0x5EF0 ล่าง/ตัวบาง
+ชุด: 0x4CE0 กลาง/ตัวหนา, 0x52E0 ล่าง/ตัวหนา, 0x58E0 บน?/ตัวบาง(กลาง), 0x5EE0 ล่าง/ตัวบาง
 ใช้: python tools/font_maps.py  -> font_map_<offset>.png x4 + font_map_all4_grid.png"""
 import sys
 from PIL import Image, ImageDraw, ImageFont
 D = open('THAID.COM', 'rb').read()
-SETS = [(0x4CF0, 'A  file 0x4CF0   block 0 BOLD  (upper+middle bands: ASCII, Thai tops, vowels)'),
-        (0x52F0, 'B  file 0x52F0   block 1 BOLD  (lower band: descenders, tails, +u/+uu/+phinthu)'),
-        (0x58F0, 'C  file 0x58F0   block 0 THIN  (upper+middle bands)'),
-        (0x5EF0, 'D  file 0x5EF0   block 1 THIN  (lower band)')]
+SETS = [(0x4CE0, 'A  file 0x4CE0   block 0 BOLD  (upper+middle bands: ASCII, Thai tops, vowels)'),
+        (0x52E0, 'B  file 0x52E0   block 1 BOLD  (lower band: descenders, tails, +u/+uu/+phinthu)'),
+        (0x58E0, 'C  file 0x58E0   block 0 THIN  (upper+middle bands)'),
+        (0x5EE0, 'D  file 0x5EE0   block 1 THIN  (lower band)')]
 S = 4                     # scale
 GW, GH, PAD = 8 * S, 6 * S, 6
 CW, CH = GW + PAD, GH + PAD

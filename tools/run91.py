@@ -1,7 +1,7 @@
 from unicorn import *
 from unicorn.x86_const import *
-th=open('/mnt/user-data/uploads/thaid_disasm/THAID.COM','rb').read()
-t=open('T91.COM','rb').read()
+th=open('THAID.COM','rb').read()
+t=open('tools/T91.COM','rb').read()
 mu=Uc(UC_ARCH_X86,UC_MODE_16);mu.mem_map(0,0x100000)
 TS=0x2000
 mu.mem_write(TS*16+0x100,th)
@@ -29,9 +29,11 @@ def intr(u,n,_):
         for v in (0x202,cs,ip):
             sp-=2;u.mem_write(ss*16+sp,v.to_bytes(2,'little'))
         u.reg_write(UC_X86_REG_SP,sp)
-        u.reg_write(UC_X86_REG_CS,TS);u.reg_write(UC_X86_REG_IP,0x1e40)
+        u.reg_write(UC_X86_REG_CS,TS);u.reg_write(UC_X86_REG_IP,0x1e50)
+    elif n==0x60:
+        pass            # แอป->internal : identity ในการจำลอง (ตาราง [7A2h] ถูกเติมตอนติดตั้ง)
     elif n==0x5f:
-        a=ax&0xff;u.reg_write(UC_X86_REG_AX,(ax&0xff00)|th[0x1554-0x100+a])
+        a=ax&0xff;u.reg_write(UC_X86_REG_AX,(ax&0xff00)|th[0x155D-0x100+a])
 mu.hook_add(UC_HOOK_INTR,intr)
 for r,v in((UC_X86_REG_CS,0x1000),(UC_X86_REG_DS,0x1000),(UC_X86_REG_ES,0x1000),(UC_X86_REG_SS,0x1000),(UC_X86_REG_SP,0xfff0)):mu.reg_write(r,v)
 mu.mem_write(0x1000*16+0xfff0,b'\xf4\xf4')

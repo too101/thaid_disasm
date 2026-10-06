@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """วาดแผนภาพ 3 band (upper/middle/lower) ของข้อความหนึ่งแถว ตามที่ THAID ทำ
 
-ใช้ render_row จาก thaid_render.py (จำลอง row renderer 0x16C0-0x18FC)
+ใช้ render_row จาก thaid_render.py (จำลอง row renderer 0x16C9-0x1905)
 แต่ละ cell แสดงพิกเซลของ 3 band จริงจากฟอนต์ใน THAID.COM
 และรหัส U/M/L (glyph ของ band บน/กลาง/ล่าง) ใต้ cell
 
@@ -34,7 +34,7 @@ for b in range(3):
     y0 = TOP + b * BH
     dr.rectangle([LX, y0, LX + CW * len(row), y0 + BH], fill=BG[b])
     dr.text((8, y0 + BH // 2 - 6), LBL[b], fill=(220, 220, 220), font=f)
-fonts = (0x4CF0, 0x52F0)
+fonts = (0x4CE0, 0x52E0)
 for cx, cell in enumerate(row):
     x0 = LX + cx * CW
     for b, (g, blk) in enumerate(cell):
